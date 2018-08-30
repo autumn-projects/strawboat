@@ -1,7 +1,6 @@
 package pers.ray.strawboat.utils;
 
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -26,6 +25,7 @@ public class HttpUtils {
         HttpURLConnection conn = (HttpURLConnection) u.openConnection(proxy);
         conn.setRequestMethod("GET");
         conn.setConnectTimeout(3000);
+        conn.setReadTimeout(6000);
 //            conn.setRequestProperty("Host", "www.xicidaili.com");
 //            conn.setRequestProperty("Connection", "keep-alive");
 //            conn.setRequestProperty("Pragma", "no-cache");
@@ -48,12 +48,13 @@ public class HttpUtils {
         while ((line = in.readLine()) != null)
             result.append(line);
 
+        conn.disconnect();
         return result.toString();
     }
 
     public void jsoup() {
         try {
-            Document document = Jsoup.connect("http://www.xicidaili.com/wn/1").get();
+            Document document = Jsoup.connect("http://www.xicidaili.com/wt/1").get();
             Elements elements = document.body().select("tr");
             elements.remove(0);
 
@@ -78,10 +79,10 @@ public class HttpUtils {
         String url = "http://www.xicidaili.com/wt/1";
         new HttpUtils().jsoup();
 
-        try {
-            System.out.println(new HttpUtils().getResponse("https://www.baidu.com",new IP("203.130.46.108",9090)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            System.out.println(new HttpUtils().getResponse("https://www.baidu.com",new IP("203.130.46.108",9090)));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }
