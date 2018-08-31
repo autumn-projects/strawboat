@@ -3,8 +3,8 @@ package pers.ray.strawboat.source.kuai;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import pers.ray.strawboat.source.xicidaili.Type;
-import pers.ray.strawboat.utils.IP;
+import pers.ray.strawboat.assets.entity.IP;
+import pers.ray.strawboat.source.Provider;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,14 +15,28 @@ import java.util.List;
  * 官网：http://www.kuaidaili.com/
  * 全部是http代理
  */
-public class KuaiProvider {
+public class KuaiProvider implements Provider {
 
-    public static final String url = "https://www.kuaidaili.com/free/inha/";
+    private static final String WEBSITE = "kuaidaili.com";
+    private static final String URL = "https://www.kuaidaili.com/free/inha/";
 
-    public List<IP> getHttpResource(Type type, int page) {
+    private String url;
+    private int page;
+
+    public KuaiProvider() {
+        this(1);
+    }
+
+    public KuaiProvider(int page) {
+        url = URL;
+        this.page = page;
+    }
+
+    @Override
+    public List<IP> getIPList() {
         List<IP> ipList = new ArrayList<>();
 
-        String url = KuaiProvider.url + page;
+        String url = this.url + this.page;
         try {
             Document document = Jsoup.connect(url).get();
 
@@ -31,7 +45,7 @@ public class KuaiProvider {
             elements.forEach((v) -> {
                 String address = v.select("td").eq(0).text();
                 int port = Integer.parseInt(v.select("td").eq(1).text());
-                IP ip = new IP(address, port);
+                IP ip = new IP(address, port, WEBSITE);
                 ipList.add(ip);
             });
         } catch (IOException e) {
@@ -39,15 +53,6 @@ public class KuaiProvider {
         }
 
         return ipList;
-    }
-
-    public static void main(String[] args) {
-        KuaiProvider provider = new KuaiProvider();
-        List<IP> ipList = provider.getHttpResource(Type.HTTPS, 2);
-
-        for(IP ip :ipList){
-            System.out.println(ip +"\t"+ ip.enableProxy());
-        }
     }
 
 }

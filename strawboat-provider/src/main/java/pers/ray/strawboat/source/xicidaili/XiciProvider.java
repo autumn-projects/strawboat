@@ -3,8 +3,9 @@ package pers.ray.strawboat.source.xicidaili;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import pers.ray.strawboat.assets.entity.IP;
 import pers.ray.strawboat.source.Provider;
-import pers.ray.strawboat.utils.IP;
+import pers.ray.strawboat.source.Type;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,10 +17,35 @@ import java.util.List;
  */
 public class XiciProvider implements Provider {
 
-    public List<IP> getHttpResource(Type type, int page) {
+    private static final String WEBSITE = "xicidaili.com";
+    private static final String HTTPS_URL = "http://www.xicidaili.com/wn/";
+    private static final String HTTP_URL = "http://www.xicidaili.com/wt/";
+
+    private String url;
+    private int page;
+
+    public XiciProvider(Type type) {
+        this(type, 1);
+    }
+
+    public XiciProvider(Type type, int page) {
+        this.page = page;
+
+        switch (type) {
+            case HTTPS:
+                url = HTTPS_URL;
+                break;
+            case HTTP:
+                url = HTTP_URL;
+                break;
+        }
+    }
+
+    @Override
+    public List<IP> getIPList() {
         List<IP> ipList = new ArrayList<>();
 
-        String url = type.toString() + page;
+        String url = this.url + this.page;
         try {
             Document document = Jsoup.connect(url).get();
 
@@ -29,7 +55,7 @@ public class XiciProvider implements Provider {
             elements.forEach((v) -> {
                 String address = v.select("td").eq(1).text();
                 int port = Integer.parseInt(v.select("td").eq(2).text());
-                IP ip = new IP(address, port);
+                IP ip = new IP(address, port, WEBSITE);
                 ipList.add(ip);
             });
         } catch (IOException e) {
@@ -37,19 +63,5 @@ public class XiciProvider implements Provider {
         }
 
         return ipList;
-    }
-
-    public static void main(String[] args) {
-        XiciProvider provider = new XiciProvider();
-        List<IP> ipList = provider.getHttpResource(Type.HTTPS, 1);
-
-        for(IP ip :ipList){
-            System.out.println(ip +"\t"+ ip.enableProxy());
-        }
-    }
-
-    @Override
-    public List<IP> getIPList() {
-        return getHttpResource(Type.HTTPS,1);
     }
 }

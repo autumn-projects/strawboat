@@ -3,33 +3,32 @@ package pers.ray.strawboat.source._89;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import pers.ray.strawboat.utils.IP;
+import pers.ray.strawboat.assets.entity.IP;
+import pers.ray.strawboat.source.Provider;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 快代理
- * 官网：http://www.kuaidaili.com/
- * 全部是http代理
+ * 官网：http://www.89ip.cn
  */
-public class _89Provider {
+public class _89Provider implements Provider {
 
-    public static final String url = "http://www.89ip.cn/index_1.html";
+    private static final String WEBSITE = "89ip.cn";
+    private static final String URL = "http://www.89ip.cn/index_1.html";
 
-    public List<IP> getHttpResource() {
+    @Override
+    public List<IP> getIPList() {
         List<IP> ipList = new ArrayList<>();
-        String url = _89Provider.url;
         try {
-            Document document = Jsoup.connect(url).get();
+            Document document = Jsoup.connect(URL).get();
 
             Elements elements = document.body().select("tbody").select("tr");
-//            System.out.println(elements);
             elements.forEach((v) -> {
                 String address = v.select("td").eq(0).text();
                 int port = Integer.parseInt(v.select("td").eq(1).text());
-                IP ip = new IP(address, port);
+                IP ip = new IP(address, port, WEBSITE);
                 ipList.add(ip);
             });
         } catch (IOException e) {
@@ -37,15 +36,6 @@ public class _89Provider {
         }
 
         return ipList;
-    }
-
-    public static void main(String[] args) {
-        _89Provider provider = new _89Provider();
-        List<IP> ipList = provider.getHttpResource();
-
-        for(IP ip :ipList){
-            System.out.println(ip +"\t"+ ip.enableProxy());
-        }
     }
 
 }
