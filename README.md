@@ -1,4 +1,4 @@
-# strawboat-草船
+# strawboat
 一个免费的IP代理池。用户可以自定义IP获取来源与IP的过滤方式。
 
 ## 默认IP获取来源
