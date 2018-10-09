@@ -8,12 +8,19 @@
   <artifactId>strawboat</artifactId>
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
-  <modules>
-    <module>strawboat-provider</module>
-      <module>strawboat-filter</module>
-      <module>strawboat-common-assets</module>
-      <module>stawboat-demo</module>
-  </modules>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.16.22</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jsoup</groupId>
+      <artifactId>jsoup</artifactId>
+      <version>1.10.2</version>
+    </dependency>
+  </dependencies>
 
   <build>
     <plugins>
