@@ -10,10 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 官网：http://www.ip3366.net/?stype=1&page=1
- */
-
 public class IP3366Provider implements Provider {
 
     private static final String WEBSITE = "ip3366.net";

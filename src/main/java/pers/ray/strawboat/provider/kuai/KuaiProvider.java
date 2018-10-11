@@ -10,11 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 快代理
- * 官网：http://www.kuaidaili.com/
- * 全部是http代理
- */
 public class KuaiProvider implements Provider {
 
     private static final String WEBSITE = "kuaidaili.com";

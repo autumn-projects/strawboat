@@ -10,9 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 官网：http://www.89ip.cn
- */
 public class _89Provider implements Provider {
 
     private static final String WEBSITE = "89ip.cn";

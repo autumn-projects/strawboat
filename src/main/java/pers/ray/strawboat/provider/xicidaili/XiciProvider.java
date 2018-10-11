@@ -11,10 +11,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 西刺代理
- * 官网：http://www.xicidaili.com/
- */
 public class XiciProvider implements Provider {
 
     private static final String WEBSITE = "xicidaili.com";
