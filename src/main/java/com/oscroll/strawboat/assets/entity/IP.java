@@ -1,4 +1,4 @@
-package pers.ray.strawboat.assets.entity;
+package com.oscroll.strawboat.assets.entity;
 
 public class IP {
 

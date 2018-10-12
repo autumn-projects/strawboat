@@ -1,11 +1,11 @@
-package pers.ray.strawboat.provider.xicidaili;
+package com.oscroll.strawboat.provider.xicidaili;
 
+import com.oscroll.strawboat.assets.entity.IP;
+import com.oscroll.strawboat.provider.Provider;
+import com.oscroll.strawboat.provider.Type;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import pers.ray.strawboat.assets.entity.IP;
-import pers.ray.strawboat.provider.Provider;
-import pers.ray.strawboat.provider.Type;
 
 import java.io.IOException;
 import java.util.ArrayList;

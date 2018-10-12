@@ -1,10 +1,10 @@
-package pers.ray.strawboat.provider.ip3366;
+package com.oscroll.strawboat.provider.ip3366;
 
+import com.oscroll.strawboat.assets.entity.IP;
+import com.oscroll.strawboat.provider.Provider;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import pers.ray.strawboat.assets.entity.IP;
-import pers.ray.strawboat.provider.Provider;
 
 import java.io.IOException;
 import java.util.ArrayList;

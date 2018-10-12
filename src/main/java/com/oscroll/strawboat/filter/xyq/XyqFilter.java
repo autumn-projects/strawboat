@@ -1,8 +1,8 @@
-package pers.ray.strawboat.filter.xyq;
+package com.oscroll.strawboat.filter.xyq;
 
-import pers.ray.strawboat.assets.entity.IP;
-import pers.ray.strawboat.assets.entity.utils.HttpUtils;
-import pers.ray.strawboat.filter.Filter;
+import com.oscroll.strawboat.assets.entity.IP;
+import com.oscroll.strawboat.assets.entity.utils.HttpUtils;
+import com.oscroll.strawboat.filter.Filter;
 
 import java.io.IOException;
 

@@ -1,11 +1,11 @@
-package pers.ray.strawboat.demo;
+package com.oscroll.strawboat.demo;
 
-import pers.ray.strawboat.assets.entity.IP;
-import pers.ray.strawboat.filter.Filter;
-import pers.ray.strawboat.filter.baidu.BaiduFilter;
-import pers.ray.strawboat.provider.Provider;
-import pers.ray.strawboat.provider.Type;
-import pers.ray.strawboat.provider.xicidaili.XiciProvider;
+import com.oscroll.strawboat.assets.entity.IP;
+import com.oscroll.strawboat.filter.Filter;
+import com.oscroll.strawboat.filter.baidu.BaiduFilter;
+import com.oscroll.strawboat.provider.Provider;
+import com.oscroll.strawboat.provider.Type;
+import com.oscroll.strawboat.provider.xicidaili.XiciProvider;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
-package pers.ray.strawboat.assets.entity.utils;
+package com.oscroll.strawboat.assets.entity.utils;
 
 
-import pers.ray.strawboat.assets.entity.IP;
+import com.oscroll.strawboat.assets.entity.IP;
 
 import java.io.BufferedReader;
 import java.io.IOException;

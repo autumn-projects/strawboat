@@ -17,4 +17,4 @@
 实现`pers.ray.strawboat.source.Provider`接口
 
 ### 自定义过滤方式
-实现`pers.ray.strawboat.filter.Filter`接口
+实现`Filter`接口
