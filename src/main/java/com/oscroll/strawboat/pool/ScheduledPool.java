@@ -65,11 +65,11 @@ public class ScheduledPool {
 
         @Override
         public void run() {
-            if (filterList == null) {
+            if (filterList == null || ip == null) {
                 return;
             }
 
-            filterList.forEach(filter -> {
+            for (Filter filter : filterList) {
                 if (filter.filter(ip)) {
                     try {
                         ipQueue.put(ip);
@@ -81,7 +81,7 @@ public class ScheduledPool {
                 } else {
                     System.out.println("false:" + ip);
                 }
-            });
+            }
         }
     }
 

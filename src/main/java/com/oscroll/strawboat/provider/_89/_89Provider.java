@@ -29,7 +29,7 @@ public class _89Provider implements Provider {
                 ipList.add(ip);
             });
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
         return ipList;
