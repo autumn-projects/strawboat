@@ -44,7 +44,7 @@ public class KuaiProvider implements Provider {
                 ipList.add(ip);
             });
         } catch (IOException e) {
-//            e.printStackTrace();
+
         }
 
         return ipList;

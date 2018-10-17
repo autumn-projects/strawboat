@@ -55,7 +55,7 @@ public class XiciProvider implements Provider {
                 ipList.add(ip);
             });
         } catch (IOException e) {
-//            e.printStackTrace();
+
         }
 
         return ipList;

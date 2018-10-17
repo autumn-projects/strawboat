@@ -5,6 +5,7 @@ import com.oscroll.strawboat.filter.Filter;
 import com.oscroll.strawboat.provider.Provider;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -69,21 +70,22 @@ public class ScheduledPool {
                 return;
             }
 
+
             for (Filter filter : filterList) {
-                if (filter.filter(ip)) {
-                    try {
-                        ipQueue.put(ip);
-                        System.out.println("true:" + ip);
-                        System.out.println(ipQueue.size());
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                try {
+                    if (filter.filter(ip)) {
+                        try {
+                            ipQueue.put(ip);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
-                } else {
-                    System.out.println("false:" + ip);
+                } catch (NoSuchElementException e) {
+
                 }
             }
         }
+
+
     }
-
-
 }

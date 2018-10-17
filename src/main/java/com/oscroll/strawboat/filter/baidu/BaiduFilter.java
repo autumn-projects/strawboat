@@ -12,11 +12,8 @@ public class BaiduFilter implements Filter {
 
     public boolean filter(IP ip) {
         try {
-//            String response = HttpUtils.getResponse(DOMAIN_NAME, ip);
-//            System.out.println(response);
             HttpUtils.getResponse(DOMAIN_NAME, ip);
         } catch (IOException e) {
-//            e.printStackTrace();
             return false;
         }
         return true;
