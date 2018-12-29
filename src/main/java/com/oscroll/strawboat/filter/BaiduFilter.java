@@ -1,8 +1,7 @@
-package com.oscroll.strawboat.filter.baidu;
+package com.oscroll.strawboat.filter;
 
 import com.oscroll.strawboat.assets.entity.IP;
 import com.oscroll.strawboat.assets.entity.utils.HttpUtils;
-import com.oscroll.strawboat.filter.Filter;
 
 import java.io.IOException;
 
