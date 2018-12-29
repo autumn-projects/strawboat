@@ -1,7 +1,7 @@
 package com.oscroll.strawboat.filter;
 
 import com.oscroll.strawboat.assets.entity.IP;
-import com.oscroll.strawboat.assets.entity.utils.HttpUtils;
+import com.oscroll.strawboat.assets.utils.HttpUtils;
 
 import java.io.IOException;
 
