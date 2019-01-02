@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class BaiduFilter implements Filter {
 
-    private final static String DOMAIN_NAME = "https://www.baidu.com";
+    private final static String DOMAIN_NAME = "http://www.baidu.com";
 
     public boolean filter(IP ip) {
         try {
