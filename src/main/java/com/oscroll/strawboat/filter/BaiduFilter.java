@@ -1,14 +1,13 @@
-package com.oscroll.strawboat.filter.baidu;
+package com.oscroll.strawboat.filter;
 
 import com.oscroll.strawboat.assets.entity.IP;
-import com.oscroll.strawboat.assets.entity.utils.HttpUtils;
-import com.oscroll.strawboat.filter.Filter;
+import com.oscroll.strawboat.assets.utils.HttpUtils;
 
 import java.io.IOException;
 
 public class BaiduFilter implements Filter {
 
-    private final static String DOMAIN_NAME = "https://www.baidu.com";
+    private final static String DOMAIN_NAME = "http://www.baidu.com";
 
     public boolean filter(IP ip) {
         try {

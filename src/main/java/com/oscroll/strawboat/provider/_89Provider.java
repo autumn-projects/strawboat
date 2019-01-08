@@ -1,7 +1,6 @@
-package com.oscroll.strawboat.provider._89;
+package com.oscroll.strawboat.provider;
 
 import com.oscroll.strawboat.assets.entity.IP;
-import com.oscroll.strawboat.provider.Provider;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;

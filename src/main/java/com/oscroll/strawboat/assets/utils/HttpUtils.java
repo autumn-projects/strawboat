@@ -1,4 +1,4 @@
-package com.oscroll.strawboat.assets.entity.utils;
+package com.oscroll.strawboat.assets.utils;
 
 
 import com.oscroll.strawboat.assets.entity.IP;

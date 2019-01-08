@@ -1,13 +1,8 @@
 package com.oscroll.strawboat.pool;
 
+import com.oscroll.strawboat.filter.BaiduFilter;
 import com.oscroll.strawboat.filter.Filter;
-import com.oscroll.strawboat.filter.baidu.BaiduFilter;
-import com.oscroll.strawboat.provider.Provider;
-import com.oscroll.strawboat.provider.Type;
-import com.oscroll.strawboat.provider._89._89Provider;
-import com.oscroll.strawboat.provider.ip3366.IP3366Provider;
-import com.oscroll.strawboat.provider.kuai.KuaiProvider;
-import com.oscroll.strawboat.provider.xicidaili.XiciProvider;
+import com.oscroll.strawboat.provider.*;
 
 import java.util.ArrayList;
 import java.util.List;
