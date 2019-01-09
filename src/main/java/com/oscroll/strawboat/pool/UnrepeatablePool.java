@@ -61,8 +61,8 @@ public class UnrepeatablePool {
     /**
      * 保存IP的默认时间，超过该时间则清除
      */
-//    private static final int NCPU = Runtime.getRuntime().availableProcessors();
-    private ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
+    private static final int NCPU = Runtime.getRuntime().availableProcessors();
+    private ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(NCPU + 1);
     private BlockingQueue<IP> ipQueue = new LinkedBlockingDeque<>();
     private long maxAliveTime = 24 * 60 * 60 * 1000; // 默认一天，以毫秒计算
     private volatile boolean running = false;
