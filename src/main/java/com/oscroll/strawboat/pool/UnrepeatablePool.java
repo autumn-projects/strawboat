@@ -116,17 +116,7 @@ public class UnrepeatablePool {
                     }
                 }
 
-                Set<Map.Entry<String, Long>> set = map.entrySet();
-                Iterator<Map.Entry<String, Long>> iterator = set.iterator();
-                while (iterator.hasNext()) {
-                    Map.Entry<String, Long> entry = iterator.next();
-                    String key = entry.getKey();
-                    Long time = entry.getValue();
-
-                    if (System.currentTimeMillis() - time > maxAliveTime) {
-                        map.remove(key);
-                    }
-                }
+                clearOvertimeEntry();
             }
         });
     }
@@ -142,5 +132,19 @@ public class UnrepeatablePool {
 
     public void stop() {
         running = false;
+    }
+
+    private void clearOvertimeEntry() {
+        Set<Map.Entry<String, Long>> set = map.entrySet();
+        Iterator<Map.Entry<String, Long>> iterator = set.iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Long> entry = iterator.next();
+            String key = entry.getKey();
+            Long time = entry.getValue();
+
+            if (System.currentTimeMillis() - time > maxAliveTime) {
+                map.remove(key);
+            }
+        }
     }
 }
