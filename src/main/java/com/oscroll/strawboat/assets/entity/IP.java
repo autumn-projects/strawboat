@@ -6,6 +6,13 @@ public class IP {
     private int port;
     private String website;
 
+    private int connectTime;
+
+    /**
+     * 网速，以kb/s为单位
+     */
+    private int speed;
+
     public IP() {
     }
 
@@ -42,6 +49,22 @@ public class IP {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    public int getConnectTime() {
+        return connectTime;
+    }
+
+    public void setConnectTime(int connectTime) {
+        this.connectTime = connectTime;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 }
 
