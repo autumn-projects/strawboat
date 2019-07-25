@@ -1,23 +1,17 @@
 package com.oscroll.strawboat.pool;
 
+import com.oscroll.strawboat.Template;
 import com.oscroll.strawboat.assets.entity.IP;
 import com.oscroll.strawboat.filter.Filter;
 import com.oscroll.strawboat.provider.Provider;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.ThreadPoolExecutor;
 
-public class ScheduledPool {
+public class ScheduledPool extends Template {
 
-    private ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
-    private BlockingQueue<IP> ipQueue = new LinkedBlockingDeque<>();
     private List<Provider> providerList;
     private List<Filter> filterList;
-    private volatile boolean flag = true;
+    private Integer providerIndex = 0;
 
     public ScheduledPool() {
         DefaultPoolSetting setting = new DefaultPoolSetting();
@@ -25,67 +19,32 @@ public class ScheduledPool {
         filterList = setting.getFilterList();
     }
 
-    public ScheduledPool(List<Provider> providerList, List<Filter> filterList) {
-        this.providerList = providerList;
-        this.filterList = filterList;
+    @Override
+    public List<IP> getIPList() {
+        List<IP> ipList = providerList.get(providerIndex).getIPList();
+        providerIndex++;
+        if (providerIndex == providerList.size() - 1) providerIndex = 0;
+        return ipList;
     }
 
-    public void execute() {
-        while (flag) {
-            providerList.forEach(provider -> {
-                        List<IP> ipList = provider.getIPList();
-                        ipList.forEach(ip -> {
-                            IPFilter filter = new IPFilter(ip);
-                            executor.execute(filter);
-                        });
-                    }
-            );
+    @Override
+    public boolean validate(IP ip) {
+        for (Filter filter : filterList) {
+            /* 如果没有通过校验*/
+            if (!filter.filter(ip)) return false;
         }
+        return true;
     }
 
-    public void shutDown() {
-        if (flag) flag = false;
+    @Override
+    public void onAvailable(IP ip) {
+        System.out.println("通过校验：" + ip);
     }
 
-    public IP take() {
-        try {
-            return ipQueue.take();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return null;
+    @Override
+    public void onUnavailable(IP ip) {
+        System.out.println("不通过校验：" + ip);
     }
 
-    class IPFilter implements Runnable {
 
-        private IP ip;
-
-        IPFilter(IP ip) {
-            this.ip = ip;
-        }
-
-        @Override
-        public void run() {
-            if (filterList == null || ip == null) {
-                return;
-            }
-
-
-            for (Filter filter : filterList) {
-                try {
-                    if (filter.filter(ip)) {
-                        try {
-                            ipQueue.put(ip);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                } catch (NoSuchElementException e) {
-
-                }
-            }
-        }
-
-
-    }
 }

@@ -66,5 +66,16 @@ public class IP {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
+
+    @Override
+    public String toString() {
+        return "IP{" +
+                "address='" + address + '\'' +
+                ", port=" + port +
+                ", website='" + website + '\'' +
+                ", connectTime=" + connectTime +
+                ", speed=" + speed +
+                '}';
+    }
 }
 
